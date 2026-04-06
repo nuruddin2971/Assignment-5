@@ -14,7 +14,7 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- font integration -->
+    <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,14 +44,16 @@
           </div>
           <div>
             <h2 class="text-2xl font-semibold">GitHub Issues Tracker</h2>
-            <p class="text-[#64748B] text-center">Sign in to manage your issues</p>
+            <p class="text-[#64748B] text-center">
+              Sign in to manage your issues
+            </p>
           </div>
         </div>
 
         <form action="">
           <label for="username" class="font-medium">Username</label>
           <br />
-          <input
+          <input id="input-username"
             class="w-[450px] h-[48px] rounded-lg shadow-sm border-[#E4E4E7] p-4 my-2"
             type="text"
             name="username"
@@ -62,7 +64,7 @@
           <br />
           <label for="password" class="font-medium">Password</label>
           <br />
-          <input
+          <input id="input-password"
             class="w-[450px] h-[48px] rounded-lg shadow-sm border-[#E4E4E7] p-4 my-2"
             type="password"
             name="password"
@@ -72,7 +74,8 @@
           <p class="text-sm text-[#4A00FF]">Default: admin123</p>
           <br />
           <button
-            class="bg-[#4A00FF] w-[450px] h-[48px] rounded-lg shadow-sm p-4 text-white font-semibold"
+            id="sign-btn"
+            class="bg-[#4A00FF] w-[450px] h-[48px] rounded-lg shadow-sm p-4 text-white font-semibold cursor-pointer"
           >
             Sign In
           </button>
@@ -82,7 +85,9 @@
 
         <div>
           <p class="text-[#64748B] text-center pb-2">Demo Credentials:</p>
-          <div class="flex flex-col justify-center items-center w-[450px] h-[90px] rounded-lg bg-[#F8FAFC]">
+          <div
+            class="flex flex-col justify-center items-center w-[450px] h-[90px] rounded-lg bg-[#F8FAFC]"
+          >
             <h4><span class="font-semibold">Username:</span> admin</h4>
             <h4><span class="font-semibold">Password:</span> admin123</h4>
           </div>
