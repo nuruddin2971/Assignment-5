@@ -34,7 +34,61 @@
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <h1 class="">Hello</h1>
+    <section class="flex justify-center items-center bg-[#F8FAFC]">
+      <div
+        class="w-[520px] h-[729px] bg-[#FFFFFF] rounded-lg flex flex-col justify-center items-center"
+      >
+        <div class="flex flex-col items-center pb-4">
+          <div>
+            <img class="pb-3" src="./assets/github-logo.png" alt="" />
+          </div>
+          <div>
+            <h2 class="text-2xl font-semibold">GitHub Issues Tracker</h2>
+            <p class="text-[#64748B] text-center">Sign in to manage your issues</p>
+          </div>
+        </div>
+
+        <form action="">
+          <label for="username" class="font-medium">Username</label>
+          <br />
+          <input
+            class="w-[450px] h-[48px] rounded-lg shadow-sm border-[#E4E4E7] p-4 my-2"
+            type="text"
+            name="username"
+            id=""
+            placeholder="Enter Username"
+          />
+          <p class="text-sm text-[#4A00FF]">Default: admin</p>
+          <br />
+          <label for="password" class="font-medium">Password</label>
+          <br />
+          <input
+            class="w-[450px] h-[48px] rounded-lg shadow-sm border-[#E4E4E7] p-4 my-2"
+            type="password"
+            name="password"
+            id=""
+            placeholder="Enter Password"
+          />
+          <p class="text-sm text-[#4A00FF]">Default: admin123</p>
+          <br />
+          <button
+            class="bg-[#4A00FF] w-[450px] h-[48px] rounded-lg shadow-sm p-4 text-white font-semibold"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <div class="divider px-9">OR</div>
+
+        <div>
+          <p class="text-[#64748B] text-center pb-2">Demo Credentials:</p>
+          <div class="flex flex-col justify-center items-center w-[450px] h-[90px] rounded-lg bg-[#F8FAFC]">
+            <h4><span class="font-semibold">Username:</span> admin</h4>
+            <h4><span class="font-semibold">Password:</span> admin123</h4>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <script src="script/script.js"></script>
   </body>
