@@ -50,8 +50,11 @@ const displayLesson = (cards) => {
         <div class="w-[300] h-[330px] p-4  border-t-green-400 rounded-md shadow-sm">
         <div class="space-y-4">
           <div class="flex justify-between">
-            <img class="w-10" src={status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"} alt="" />
-            <p class="font-medium ${status === "open" ? "bg-[#EF4444]" : "bg-green-500"} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">HIGH</p>
+         
+            <img class="w-10" 
+src="${card.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" 
+alt="" />
+            <p class="font-medium ${card.status === "open" ? "bg-[#EF4444]" : "bg-green-500"} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">HIGH</p>
           </div>
           <div>
             <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
