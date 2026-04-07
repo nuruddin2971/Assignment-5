@@ -5,11 +5,10 @@ const loadLessons = () => {
 };
 
 let currentTab = "all";
-const tabActive = ["bg-navy", "border-navy"];
+const tabActive = ["bg-blue-700!", "text-white"];
 const tabInactive = ["bg-transparent", "text-slate-700", "border-state-200"];
 
 function switchTab(tab) {
-  console.log(tab);
   const tabs = ["all", "open", "closed"];
 
   for (const t of tabs) {
@@ -23,11 +22,19 @@ function switchTab(tab) {
     }
   }
 }
+switchTab(currentTab);
 
 const loadLevelWord = (id) => {
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/${id}`;
-  console.log(url);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayLoadLevelWord(data));
 };
+
+const displayLoadLevelWord = (words) => {
+  console.log(words);
+};
+displayLoadLevelWord();
 
 const displayLesson = (cards) => {
   // 1. get the container & empty
@@ -43,8 +50,8 @@ const displayLesson = (cards) => {
         <div class="w-[300] h-[330px] p-4  border-t-green-400 rounded-md shadow-sm">
         <div class="space-y-4">
           <div class="flex justify-between">
-            <img class="w-10" src="./assets/Open-Status.png" alt="" />
-            <p class="font-medium text-[#EF4444] text-center bg-[#FEECEC] w-20 p-2 rounded-lg">HIGH</p>
+            <img class="w-10" src={status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"} alt="" />
+            <p class="font-medium ${status === "open" ? "bg-[#EF4444]" : "bg-green-500"} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">HIGH</p>
           </div>
           <div>
             <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
