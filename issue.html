@@ -35,12 +35,14 @@
   </head>
   <body>
     <header class="bg-[#FFFFFF] shadow-sm">
-      <nav class="w-11/12 mx-auto md:flex justify-between items-center py-5">
+      <nav
+        class="w-11/12 mx-auto flex flex-col md:flex-row justify-center md:justify-between items-center py-5"
+      >
         <div class="flex items-center gap-1">
           <img class="w-9 h-9" src="./assets/github-logo.png" alt="" />
           <h2 class="text-2xl font-semibold">GitHub Issues Tracker</h2>
         </div>
-        <div class="flex flex-col md:flex-row gap-4">
+        <div class="flex md:flex-row gap-4">
           <label class="input">
             <svg
               class="h-[1em] opacity-50"
@@ -72,13 +74,21 @@
       <section class="tab-section w-9/12 mx-auto py-6">
         <!-- tab div -->
         <div class="bg-[#FFFFFF] h-20 flex items-center px-3 rounded-lg gap-2">
-          <button class="btn btn-outline btn-primary w-24">All</button>
-          <button class="btn btn-outline btn-primary w-24">Open</button>
-          <button class="btn btn-outline btn-primary w-24">Closed</button>
+          <button id="tab-all" onclick="switchTab('all')" class="btn btn-outline btn-primary w-24">
+            All
+        </button>
+          <button id="tab-open" onclick="switchTab('open')" class="btn btn-outline btn-primary w-24">
+            Open
+          </button>
+          <button id="tab-closed" onclick="switchTab('closed')" class="btn btn-outline btn-primary w-24">
+            Closed
+          </button>
         </div>
 
         <!-- issues div -->
-        <div class="flex justify-between bg-[#FFFFFF] h-20 rounded-lg mt-4 p-5">
+        <div
+          class="md:flex justify-between bg-[#FFFFFF] md:h-20 rounded-lg mt-4 p-5"
+        >
           <div class="flex items-center gap-4">
             <div>
               <img
@@ -92,7 +102,7 @@
               <p class="text-[#64748B]">Track and manage your project issues</p>
             </div>
           </div>
-          <div class="flex items-center gap-4">
+          <div class="flex items-center justify-center gap-4 mt-2 md:mt-0">
             <div class="flex items-center gap-2">
               <div class="w-4 h-4 bg-green-500 rounded-full shadow-md"></div>
               <p class="">Open</p>
@@ -103,7 +113,18 @@
             </div>
           </div>
         </div>
+
+        <!-- card div -->
+        <div  id="card-container" class="grid grid-cols-4 gap-4">
+          <div"></div>
+        </div>
+
+      
+
+
       </section>
     </main>
+
+    <script src="script/script.js"></script>
   </body>
 </html>
