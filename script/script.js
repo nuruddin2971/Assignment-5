@@ -36,6 +36,12 @@ const displayLoadLevelWord = (words) => {
 };
 displayLoadLevelWord();
 
+const tagStyle = {
+  HIGH: "bg-[#FEECEC] text-[#EF4444]",
+  MEDIUM: "bg-[#FFF6D1] text-[#F59E0B]",
+  LOW: "bg-[#EEEFF2] text-[#9CA3AF]",
+};
+
 const displayLesson = (cards) => {
   // 1. get the container & empty
   const allCard = document.getElementById("card-container");
@@ -51,10 +57,8 @@ const displayLesson = (cards) => {
         <div class="space-y-4">
           <div class="flex justify-between">
          
-            <img class="w-10" 
-src="${card.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" 
-alt="" />
-            <p class="font-medium ${card.status === "open" ? "bg-[#EF4444]" : "bg-green-500"} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">HIGH</p>
+            <img class="w-10" src="${card.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" alt="" />
+            <p class="font-medium ${tagStyle[card.priority.toUpperCase()]} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">${card.priority.toUpperCase()}</p>
           </div>
           <div>
             <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
