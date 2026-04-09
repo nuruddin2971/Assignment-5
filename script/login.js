@@ -13,7 +13,7 @@ document.getElementById("sign-btn").addEventListener("click", (e) => {
   if (name === "admin" && password === "admin123") {
     // 3.1 true::> alert > homepage
     alert("Sign in success");
-    window.location.assign("/issue.html");
+    window.location.assign("/Assignment-5/issue.html");
   } else {
     // 3.2 false::> alert > return
     alert("Sign in failed");
