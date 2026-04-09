@@ -86,8 +86,7 @@ const displayLesson = (cards) => {
     // 3. create element
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
-      <div>
-        <div class="w-[300] h-[330px] p-4 border-3 border-r-0 border-l-0 border-b-0 ${card.status === "closed" ? "border-t-purple-600" : "border-t-green-400"} rounded-md shadow-sm">
+      <div onclick="loadModal('${card.id}')"> 
         <div class="space-y-4">
           <div class="flex justify-between">
          
@@ -112,7 +111,7 @@ const displayLesson = (cards) => {
             <p class="text-[#64748B] text-xs">1/15/2024</p>
           </div>
         </div>
-        </div>
+        
       </div>
     `;
     // 4. append into container
@@ -120,3 +119,46 @@ const displayLesson = (cards) => {
   }
 };
 loadLessons();
+
+const loadModal = (id) => {
+  fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+    .then((res) => res.json())
+    .then((json) => displayLessonDetails(json.data));
+};
+
+const displayLessonDetails = (data) => {
+  console.log(data);
+  const modal = document.getElementById("details-container");
+  // console.log(card);
+  // const contentDiv = document.createElement("div");
+  modal.innerHTML = `
+    <div onclick="loadModal('${card.id}')"> 
+        <div class="space-y-4">
+          <div class="flex justify-between">
+         
+            <img class="w-10" src="${card.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" alt="" />
+            <p class="font-medium ${tagStyle[card.priority]} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">${card.priority.toUpperCase()}</p>
+          </div>
+          <div>
+            <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
+            <p class="text-[#64748B]">
+              The navigation menu doesn't collapse properly on mobile devices...
+            </p>
+          </div>
+          <div class="flex justify-between">
+            <p class="flex items-center font-medium text-[#EF4444] text-center bg-[#FEECEC] w-20 p-2 rounded-lg"><img class="w-4" src="./assets/Vector.png" alt="" /><span class="">BUG</span></p>
+            <p class="flex font-medium text-[#EF4444] text-center bg-[#FEECEC] w-40 p-2 rounded-lg"><img class="w-4" src="./assets/Vector (1).png" alt="" />
+              <span>HELP WANTED</span>
+            </p>
+          </div>
+          <hr class="text-[#E4E4E7]">
+          <div>
+            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
+            <p class="text-[#64748B] text-xs">1/15/2024</p>
+          </div>
+        </div>
+        
+      </div>
+    `;
+  document.getElementById("my_modal_5").showModal();
+};
