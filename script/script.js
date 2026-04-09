@@ -128,37 +128,30 @@ const loadModal = (id) => {
 
 const displayLessonDetails = (data) => {
   console.log(data);
-  const modal = document.getElementById("details-container");
-  // console.log(card);
-  // const contentDiv = document.createElement("div");
-  modal.innerHTML = `
-    <div onclick="loadModal('${card.id}')"> 
-        <div class="space-y-4">
-          <div class="flex justify-between">
-         
-            <img class="w-10" src="${card.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" alt="" />
-            <p class="font-medium ${tagStyle[card.priority]} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">${card.priority.toUpperCase()}</p>
-          </div>
-          <div>
-            <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
-            <p class="text-[#64748B]">
-              The navigation menu doesn't collapse properly on mobile devices...
-            </p>
-          </div>
-          <div class="flex justify-between">
-            <p class="flex items-center font-medium text-[#EF4444] text-center bg-[#FEECEC] w-20 p-2 rounded-lg"><img class="w-4" src="./assets/Vector.png" alt="" /><span class="">BUG</span></p>
-            <p class="flex font-medium text-[#EF4444] text-center bg-[#FEECEC] w-40 p-2 rounded-lg"><img class="w-4" src="./assets/Vector (1).png" alt="" />
-              <span>HELP WANTED</span>
-            </p>
-          </div>
-          <hr class="text-[#E4E4E7]">
-          <div>
-            <p class="text-[#64748B] text-xs">#1 by john_doe</p>
-            <p class="text-[#64748B] text-xs">1/15/2024</p>
-          </div>
-        </div>
-        
+  const detailsBox = document.getElementById("details-container");
+  detailsBox.innerHTML = `
+  <div class="space-y-5">
+  <h2 class="text-2xl font-bold">${data.title}</h2> 
+      <div class="flex items-center gap-2">
+        <p class="font-medium bg-[#00A96E] p-2 rounded-lg">${data.status}</p>
+        <p class="text-[#64748B]">${data}</p>
       </div>
-    `;
+      <div class="flex gap-2">
+        <p class="flex items-center font-medium text-[#EF4444] text-center bg-[#FEECEC] w-20 p-2 rounded-lg"><img class="w-4" src="./assets/Vector.png" alt="" /><span class="">BUG</span></p>
+        <p class="flex font-medium text-[#EF4444] text-center bg-[#FEECEC] w-40 p-2 rounded-lg"><img class="w-4" src="./assets/Vector (1).png" alt="" /><span>HELP WANTED</span>
+      </div>
+      <p class="text-[#64748B]">${data.description}.</p>
+      <div class="flex gap-40 p-4 rounded-lg bg-[#F8FAFC]">
+        <div class="">
+          <p class="text-[#64748B]">Assignee:</p>
+          <p class="font-semibold">${data.assignee}</p>
+        </div>
+        <div>
+          <p class="text-[#64748B]">Priority:</p>
+          <p class="font-medium text-[#FFFFFF] text-center bg-[#EF4444] w-20 p-2 rounded-lg">${data.priority}</p>
+        </div>
+      </div>
+  </div>
+  `;
   document.getElementById("my_modal_5").showModal();
 };
