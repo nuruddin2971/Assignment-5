@@ -44,25 +44,10 @@
         </div>
         <div class="flex md:flex-row gap-4">
           <label class="input">
-            <svg
-              class="h-[1em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="2.5"
-                fill="none"
-                stroke="currentColor"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </g>
-            </svg>
-            <input type="search" required placeholder="Search" />
+            
+            <input id="input-search" type="search" required placeholder="Search issues..." />
           </label>
-          <button
+          <button id="btn-search"
             class="font-semibold bg-[#4A00FF] text-white w-38 h-10 rounded-lg cursor-pointer"
           >
             <i class="fa-solid fa-plus"></i> New Issue
@@ -85,9 +70,11 @@
           </button>
         </div>
 
+        
+
         <!-- issues div -->
         <div
-          class="md:flex justify-between bg-[#FFFFFF] md:h-20 rounded-lg mt-4 p-5"
+          class="md:flex justify-between bg-[#FFFFFF] md:h-20 rounded-lg mt-4 mb-6 p-5"
         >
           <div class="flex items-center gap-4">
             <div>
@@ -113,8 +100,12 @@
           </div>
         </div>
 
+        <div id="spinner" class="flex justify-center items-center py-10 hidden">
+          <span class="loading loading-bars loading-xl"></span>
+        </div>
+
         <!-- card div -->
-        <div id="card-container" class="grid grid-cols-4 gap-4">
+        <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 bg-[#FFFFFF] rounded-lg">
           <div"></div>
         </div>
 

@@ -27,10 +27,24 @@ function switchTab(tab) {
   if (tab === "closed") {
     loadAllClosedIssue();
   }
+  if (tab === "all") {
+    loadLessons();
+  }
 }
 switchTab(currentTab);
 
+const manageSpinner = (status) => {
+  if (status === true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("card-container").classList.add("hidden");
+  } else {
+    document.getElementById("card-container").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
+
 const loadLevelWord = (id) => {
+  manageSpinner(true);
   const url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/${id}`;
   fetch(url)
     .then((res) => res.json())
@@ -85,6 +99,7 @@ const displayLesson = (cards) => {
     console.log(card);
     // 3. create element
     const btnDiv = document.createElement("div");
+    btnDiv.classList.add("shadow-md", "p-1")
     btnDiv.innerHTML = `
       <div onclick="loadModal('${card.id}')"> 
         <div class="space-y-4">
@@ -134,7 +149,7 @@ const displayLessonDetails = (data) => {
   <h2 class="text-2xl font-bold">${data.title}</h2> 
       <div class="flex items-center gap-2">
         <p class="font-medium bg-[#00A96E] p-2 rounded-lg">${data.status}</p>
-        <p class="text-[#64748B]">${data}</p>
+        <p class="text-[#64748B]">${data.assignee}</p>
       </div>
       <div class="flex gap-2">
         <p class="flex items-center font-medium text-[#EF4444] text-center bg-[#FEECEC] w-20 p-2 rounded-lg"><img class="w-4" src="./assets/Vector.png" alt="" /><span class="">BUG</span></p>
@@ -155,3 +170,22 @@ const displayLessonDetails = (data) => {
   `;
   document.getElementById("my_modal_5").showModal();
 };
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  const input = document.getElementById("input-search");
+  const searchValue = input.value.trim().toLowerCase();
+  console.log(searchValue);
+
+  fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const allData = data.data;
+      displayLesson(allData);
+      // const filterData = allData.filter((data) =>
+      //   data.data.toLowerCase().includes(searchValue),
+      // );
+      // console.log(filterData);
+    });
+});
