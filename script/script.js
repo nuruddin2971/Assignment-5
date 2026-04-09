@@ -21,6 +21,12 @@ function switchTab(tab) {
       tabName.classList.add(...tabInactive);
     }
   }
+  if (tab === "open") {
+    loadAllOpenIssue();
+  }
+  if (tab === "closed") {
+    loadAllClosedIssue();
+  }
 }
 switchTab(currentTab);
 
@@ -31,21 +37,49 @@ const loadLevelWord = (id) => {
     .then((data) => displayLoadLevelWord(data));
 };
 
-const displayLoadLevelWord = (words) => {
-  console.log(words);
+const loadAllOpenIssue = () => {
+  fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+    .then((res) => res.json())
+    .then((json) => allOpenIssue(json.data));
 };
-displayLoadLevelWord();
+
+const allOpenIssue = (issues) => {
+  const card = document.getElementById("card-container");
+  const openIssues = issues.filter((issue) => issue.status === "open");
+  console.log(openIssues);
+  displayLesson(openIssues);
+};
+loadAllOpenIssue();
+
+const loadAllClosedIssue = () => {
+  fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+    .then((res) => res.json())
+    .then((json) => allClosedIssue(json.data));
+};
+const allClosedIssue = (issues) => {
+  const card = document.getElementById("card-container");
+  const closedIssues = issues.filter((issue) => issue.status === "closed");
+  console.log(closedIssues);
+  displayLesson(closedIssues);
+};
 
 const tagStyle = {
-  HIGH: "bg-[#FEECEC] text-[#EF4444]",
-  MEDIUM: "bg-[#FFF6D1] text-[#F59E0B]",
-  LOW: "bg-[#EEEFF2] text-[#9CA3AF]",
+  high: "bg-[#FEECEC] text-[#EF4444]",
+  medium: "bg-[#FFF6D1] text-[#F59E0B]",
+  low: "bg-[#EEEFF2] text-[#9CA3AF]",
 };
 
 const displayLesson = (cards) => {
   // 1. get the container & empty
   const allCard = document.getElementById("card-container");
   allCard.innerHTML = "";
+
+  const numberIssues = document.getElementById("numberIssues");
+  numberIssues.innerHTML = `
+      <h2 class="font-semibold text-xl">${cards.length} Issues</h2>
+      <p class="text-[#64748B]">Track and manage your project issues</p>
+  `;
+
   // 2. get into every lessons
   for (let card of cards) {
     console.log(card);
@@ -53,12 +87,12 @@ const displayLesson = (cards) => {
     const btnDiv = document.createElement("div");
     btnDiv.innerHTML = `
       <div>
-        <div class="w-[300] h-[330px] p-4  border-t-green-400 rounded-md shadow-sm">
+        <div class="w-[300] h-[330px] p-4 border-3 border-r-0 border-l-0 border-b-0 ${card.status === "closed" ? "border-t-purple-600" : "border-t-green-400"} rounded-md shadow-sm">
         <div class="space-y-4">
           <div class="flex justify-between">
          
             <img class="w-10" src="${card.status === "open" ? "./assets/Open-Status.png" : "./assets/Closed-Status.png"}" alt="" />
-            <p class="font-medium ${tagStyle[card.priority.toUpperCase()]} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">${card.priority.toUpperCase()}</p>
+            <p class="font-medium ${tagStyle[card.priority]} text-center bg-[#FEECEC] w-20 p-2 rounded-lg">${card.priority.toUpperCase()}</p>
           </div>
           <div>
             <h2 class="font-semibold">Fix navigation menu on mobile devices</h2>
